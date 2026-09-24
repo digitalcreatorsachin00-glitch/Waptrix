@@ -5,6 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Waptrix Studio — SEO, AEO, performance marketing, social media, website development and WhatsApp API services, all from one in-house team.">
 <title>Waptrix Studio</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Waptrix",
+  "url": "https://waptrix.co.in/",
+  "logo": "https://waptrix.co.in/logo.png",
+  "image": "https://waptrix.co.in/logo.png",
+  "description": "Udaipur digital marketing agency for Meta ads, WhatsApp Business API and social media marketing.",
+  "telephone": "+91-98206-44273",
+  "email": "info@waptrix.co.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "58, Near Bhagyalaxmi Bakery, Sector 14",
+    "addressLocality": "Udaipur",
+    "addressRegion": "Rajasthan",
+    "addressCountry": "IN"
+  },
+  "areaServed": [
+    {"@type": "City", "name": "Udaipur"},
+    {"@type": "State", "name": "Rajasthan"},
+    {"@type": "Country", "name": "India"}
+  ],
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "10:00",
+    "closes": "19:00"
+  }],
+  "knowsAbout": ["Meta ads", "Facebook ads", "Instagram ads", "WhatsApp Business API", "Social media marketing"],
+  "sameAs": [
+    "https://www.instagram.com/waptrix_io/",
+    "https://www.facebook.com/profile.php?id=61591189481557",
+    "https://www.linkedin.com/company/waptrix-io/home/"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
@@ -503,6 +540,12 @@
   .contact-form button{align-self:flex-start; margin-top:4px;}
 
   /* ---------- Map slot ---------- */
+  .location-panel{display:grid; grid-template-columns:1fr 1.3fr; gap:32px; align-items:stretch;}
+  .location-info{display:flex; flex-direction:column; gap:22px;}
+  .location-info .label{font-size:11px; font-weight:600; letter-spacing:.08em; color:var(--ink-faint); margin-bottom:6px;}
+  .location-info p{margin:0; color:var(--ink-soft); font-size:16px;}
+  .location-map{width:100%; min-height:320px; border:1px solid var(--border-soft); border-radius:var(--radius);}
+  @media (max-width: 860px){ .location-panel{grid-template-columns:1fr;} }
   .map-slot{
     border:1.5px dashed var(--border); border-radius:var(--radius); padding:48px 40px;
     display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px;
@@ -558,6 +601,7 @@
   }
   .footer-col{display:flex; flex-direction:column; gap:11px;}
   .footer-col a{font-size:14px; color:var(--ink-soft); font-weight:600;}
+  .footer-address{margin:4px 0 8px; font-size:14px; color:var(--ink-soft); line-height:1.6;}
   .footer-col a:hover{color:var(--teal-deep);}
   .footer-bottom{border-top:1px solid var(--border-soft); padding:22px 0;}
   .foot-row{display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;}
@@ -728,9 +772,9 @@
   <div class="page" id="page-home">
     <section class="hero">
       <div class="wrap hero-inner">
-        <span class="eyebrow">Digital Studio · Content / Brand / Web</span>
+        <span class="eyebrow">Udaipur Digital Studio · Content / Brand / Web</span>
         <h1>Most brands post content.<br>We make people <span class="hl">stop</span> for it.</h1>
-        <p class="lede">Waptrix runs WhatsApp API automation, SEO, performance marketing, social, and web development as one team — so nothing gets lost in the handoff between five different vendors.</p>
+        <p class="lede">Waptrix is a Udaipur digital marketing studio running Meta ads, WhatsApp API automation, social media, SEO, and web development as one team — so nothing gets lost in the handoff between five different vendors.</p>
         <div class="hero-ctas">
           <a class="btn btn-primary" href="#contact" data-page="contact">Start a project</a>
           <a class="btn btn-ghost" href="#services" data-page="services">See our services</a>
@@ -1178,7 +1222,7 @@
       <div class="svc-head">
         <span class="eyebrow">SEO &amp; Performance <span class="badge hot">Most Demanded</span></span>
         <h2>Performance Marketing</h2>
-        <p>Every rupee tracked back to a lead or a sale. We run paid campaigns across Meta, Google, and beyond with one goal — a lower cost per result than you're getting today.</p>
+        <p>Every rupee tracked back to a lead or a sale. From Udaipur, we run Meta ads on Facebook and Instagram, Google campaigns, and beyond with one goal — a lower cost per result than you're getting today.</p>
       </div>
       <div class="svc-overview">
         <h3>Why this matters</h3>
@@ -1252,7 +1296,7 @@
       <div class="svc-head">
         <span class="eyebrow">SEO &amp; Performance</span>
         <h2>Ad Management</h2>
-        <p>Hands-on management of your existing ad accounts — Meta, Google, or both — so campaigns get optimized daily instead of reviewed once a month.</p>
+        <p>Hands-on management of your existing ad accounts — Meta (Facebook &amp; Instagram), Google, or both — for Udaipur businesses and brands across India, so campaigns get optimized daily instead of reviewed once a month.</p>
       </div>
       <div class="svc-overview">
         <h3>Why this matters</h3>
@@ -1277,7 +1321,7 @@
       <div class="svc-head">
         <span class="eyebrow">Social</span>
         <h2>Social Media Marketing</h2>
-        <p>Full handling of your social presence — content, posting, community replies — run by one team that knows the account, not a rotating freelancer.</p>
+        <p>Full handling of your social presence for Udaipur brands and beyond — content, posting, community replies — run by one team that knows the account, not a rotating freelancer.</p>
       </div>
       <div class="svc-overview">
         <h3>Why this matters</h3>
@@ -1397,7 +1441,7 @@
       <div class="svc-head">
         <span class="eyebrow">Automation <span class="badge hot">Core Service</span></span>
         <h2>WhatsApp API Services</h2>
-        <p>The official WhatsApp Business API, set up and run for you — broadcast to customers, automate replies, and sell directly inside the chat app your customers already have open. This is the service Waptrix was built around, and it's the one most of our clients start with.</p>
+        <p>The official WhatsApp Business API, set up and run for your business in Udaipur or anywhere in India — broadcast to customers, automate replies, and sell directly inside the chat app your customers already have open. This is the service Waptrix was built around, and it's the one most of our clients start with.</p>
       </div>
       <div class="svc-overview">
         <h3>Why this matters</h3>
@@ -1633,15 +1677,60 @@
       <div class="wrap">
         <div class="sec-head">
           <span class="eyebrow">Find us</span>
-          <h2>Where we're based.</h2>
+          <h2>Based in Udaipur.</h2>
         </div>
-        <div class="map-slot">
-          <div class="map-slot-icon">📍</div>
-          <p>No physical office address yet — this slot is ready for a real Google Maps embed the moment you have one. Give us the address and it goes right here.</p>
-          <span class="tag">Add a location</span>
+        <div class="location-panel">
+          <div class="location-info">
+            <div>
+              <div class="label mono">REGISTERED ADDRESS</div>
+              <p>58, Near Bhagyalaxmi Bakery, Sector 14,<br>Udaipur, Rajasthan</p>
+            </div>
+            <div>
+              <div class="label mono">HOURS</div>
+              <p>Monday – Saturday, 10 AM – 7 PM</p>
+            </div>
+            <div>
+              <div class="label mono">SERVICE AREA</div>
+              <p>Businesses across Udaipur and Rajasthan, and brands anywhere in India. We work remotely — call or WhatsApp to set up a meeting.</p>
+            </div>
+          </div>
+          <iframe class="location-map" title="Map of Sector 14, Udaipur" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Sector+14,+Udaipur,+Rajasthan&amp;output=embed"></iframe>
         </div>
       </div>
     </section>
+  </div>
+
+  <div class="page" id="page-digital-marketing-agency-udaipur" hidden>
+    <section><div class="wrap">
+      <div class="svc-crumb"><a href="#home" data-page="home">Home</a><span>/</span><span>Udaipur</span></div>
+      <div class="svc-head">
+        <span class="eyebrow">Udaipur, Rajasthan</span>
+        <h2>Digital Marketing Agency in Udaipur</h2>
+        <p>Waptrix is a Udaipur digital marketing team for businesses that want more enquiries, not just more followers — Meta ads, WhatsApp Business API, and social media marketing, run by one in-house team.</p>
+      </div>
+      <div class="svc-overview">
+        <h3>Meta ads for Udaipur businesses</h3>
+        <p>Facebook and Instagram ads shown to the people who can actually call, visit, or order — targeted by area, interest, and intent. We set up tracking first so every rupee is tied back to a lead or a sale, then test creatives and audiences every week to bring your cost per enquiry down.</p>
+        <h3>WhatsApp Business API</h3>
+        <p>We handle Meta verification, message templates, and catalogs, then build automated replies and broadcast campaigns — so enquiries from your ads land in WhatsApp and get answered in seconds, even after hours.</p>
+        <h3>Social media marketing</h3>
+        <p>Reels, posts, and community replies handled by one team that knows your brand, planned around what people in Udaipur actually engage with — and around the city's busy seasons, from tourist and wedding season to festivals.</p>
+        <h3>Why work with a Udaipur team</h3>
+        <p>You get people who know the local market and work your hours, Monday to Saturday, 10 AM to 7 PM. One team runs your ads, WhatsApp, and social together, so a lead from an Instagram ad is followed up on WhatsApp the same day instead of getting lost between vendors.</p>
+      </div>
+      <ul class="svc-includes">
+        <li>Meta ads (Facebook &amp; Instagram) setup and daily management</li>
+        <li>WhatsApp Business API setup &amp; verification</li>
+        <li>Automated WhatsApp replies, broadcasts &amp; catalogs</li>
+        <li>Social media management — reels, posts &amp; community replies</li>
+        <li>Monthly reporting on leads and cost per lead</li>
+      </ul>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#contact" data-page="contact">Start a project</a>
+        <a class="btn btn-ghost" href="https://wa.me/919820644273" target="_blank" rel="noopener">WhatsApp us</a>
+      </div>
+    </div></section>
   </div>
 </main>
 
@@ -1696,6 +1785,8 @@
         <a href="mailto:info@waptrix.co.in">info@waptrix.co.in</a>
         <a href="tel:+919820644273">+91 98206 44273</a>
         <a href="https://wa.me/919820644273" target="_blank" rel="noopener">WhatsApp us</a>
+        <p class="footer-address">Sector 14, Udaipur, Rajasthan<br>Mon – Sat, 10 AM – 7 PM</p>
+        <a href="#digital-marketing-agency-udaipur" data-page="digital-marketing-agency-udaipur">Digital marketing in Udaipur</a>
       </div>
     </div>
   </div>
@@ -1743,17 +1834,19 @@
   (function(){
     var PAGES = ['home','about','services','seo','aeo','geo','performance-marketing','sem',
       'digital-marketing','ad-management','smm','influencer-marketing','ugc-video',
-      'website-development','web-app-development','whatsapp-api','industries','portfolio','contact'];
+      'website-development','web-app-development','whatsapp-api','industries','portfolio','contact',
+      'digital-marketing-agency-udaipur'];
     var TITLES = {
-      home:'Waptrix Studio', about:'About Us — Waptrix', services:'Services — Waptrix',
+      home:'Waptrix — Meta Ads, WhatsApp API & Social Media Agency in Udaipur', about:'About Us — Waptrix, Udaipur', services:'Services — Waptrix',
       seo:'SEO Services — Waptrix', aeo:'AEO Services — Waptrix', geo:'Generative Engine Optimization — Waptrix',
-      'performance-marketing':'Performance Marketing — Waptrix', sem:'Search Engine Marketing — Waptrix',
-      'digital-marketing':'Digital Marketing — Waptrix', 'ad-management':'Ad Management — Waptrix',
-      smm:'Social Media Marketing — Waptrix', 'influencer-marketing':'Influencer Marketing — Waptrix',
+      'performance-marketing':'Meta Ads & Performance Marketing in Udaipur — Waptrix', sem:'Search Engine Marketing — Waptrix',
+      'digital-marketing':'Digital Marketing — Waptrix', 'ad-management':'Meta & Google Ad Management in Udaipur — Waptrix',
+      smm:'Social Media Marketing Agency in Udaipur — Waptrix', 'influencer-marketing':'Influencer Marketing — Waptrix',
       'ugc-video':'UGC Video — Waptrix', 'website-development':'Website Development — Waptrix',
       'web-app-development':'Web Application Development — Waptrix',
-      'whatsapp-api':'WhatsApp API Services — Waptrix', industries:'Industries — Waptrix',
-      portfolio:'Our Clients — Waptrix', contact:'Contact — Waptrix'
+      'whatsapp-api':'WhatsApp Business API Services in Udaipur — Waptrix', industries:'Industries — Waptrix',
+      portfolio:'Our Clients — Waptrix', contact:'Contact Waptrix — Digital Marketing Agency in Udaipur',
+      'digital-marketing-agency-udaipur':'Digital Marketing Agency in Udaipur — Waptrix'
     };
     var menuBtn = document.getElementById('menuToggle');
     var mobileMenu = document.getElementById('mobileMenu');
