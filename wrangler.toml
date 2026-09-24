@@ -1,5 +1,9 @@
 name = "waptrix"
 compatibility_date = "2026-09-10"
 
+# Generates public/ from src/site.html on every deploy (see build.js).
+[build]
+command = "node build.js"
+
 [assets]
-directory = "."
+directory = "./public"
