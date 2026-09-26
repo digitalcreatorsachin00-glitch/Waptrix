@@ -155,12 +155,22 @@ function fill(html) {
     .split('{{MAIN_SITE}}').join(MAIN_SITE);
 }
 
+// ---- Schema check: every JSON-LD block must be valid JSON with @context and @type ----
+function checkSchema(file, html) {
+  for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let data;
+    try { data = JSON.parse(m[1]); } catch (e) { throw new Error(`Invalid JSON-LD in ${file}: ${e.message}`); }
+    if (data['@context'] !== 'https://schema.org' || !data['@type']) throw new Error(`JSON-LD in ${file} needs "@context": "https://schema.org" and an "@type"`);
+  }
+}
+
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
 for (const f of ['styles.css', 'script.js', 'logo.png']) fs.copyFileSync(path.join(SRC, f), path.join(OUT, f));
 
 const urls = [];
-for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsWith('.html')).sort()) {
+const pageInfo = []; // for llms.txt
+for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsWith('.html')).sort((a, b) => (a === 'index.html' ? -1 : b === 'index.html' ? 1 : a.localeCompare(b)))) {
   const raw = fs.readFileSync(path.join(SRC, 'pages', file), 'utf8');
   const m = raw.match(/^<!--\s*(\{[\s\S]*?\})\s*-->\s*/);
   if (!m) throw new Error(`${file} must start with a <!-- {"title": ..., "description": ...} --> comment`);
@@ -168,8 +178,10 @@ for (const file of fs.readdirSync(path.join(SRC, 'pages')).filter((f) => f.endsW
   const name = file.replace(/\.html$/, '');
   const url = name === 'index' ? `${SITE_URL}/` : `${SITE_URL}/${name}`;
   const html = layout({ title: meta.title, description: meta.description, url, nav: meta.nav, body: fill(raw.slice(m[0].length)) });
+  checkSchema(file, html);
   fs.writeFileSync(path.join(OUT, file), html);
   urls.push(url);
+  pageInfo.push({ url, title: meta.title, description: meta.description });
 }
 
 const today = new Date().toISOString().slice(0, 10);
@@ -177,5 +189,21 @@ fs.writeFileSync(path.join(OUT, 'sitemap.xml'),
   '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
   urls.map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).join('\n') + '\n</urlset>\n');
 fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+
+// llms.txt: a plain-language guide to the site for AI assistants (llmstxt.org)
+fs.writeFileSync(path.join(OUT, 'llms.txt'), [
+  '# Waptrix WhatsApp Automation',
+  '',
+  '> A WhatsApp marketing and automation platform by Waptrix (Udaipur, India), built on the official WhatsApp Business API: broadcast campaigns, chatbot and auto-replies, a shared team inbox, catalog and orders, and message templates in one dashboard.',
+  '',
+  `- Sign up: ${SIGNUP}`,
+  `- Log in: ${LOGIN}`,
+  '- Demo and support: +91 98206 44273 (WhatsApp or call), info@waptrix.co.in, Monday to Saturday, 10 AM to 7 PM IST',
+  `- Company website: ${MAIN_SITE}`,
+  '',
+  '## Pages',
+  ...pageInfo.map((p) => `- [${p.title.replace(/ [—|] Waptrix.*$/, '').replace(/ — .*$/, '')}](${p.url}): ${p.description}`),
+  '',
+].join('\n'));
 
 console.log(`Built ${urls.length} pages into public/`);

@@ -80,6 +80,7 @@ shared = rewriteLinks(shared);
 
 // ---- Write one file per page ----
 const urls = [];
+const pageInfo = []; // for llms.txt
 for (const { id, body } of sections) {
   const url = id === 'home' ? `${SITE_URL}/` : `${SITE_URL}/${id}`;
   const title = titles[id] || 'Waptrix Studio';
@@ -111,8 +112,19 @@ for (const { id, body } of sections) {
     .replace('<body>', `<body data-page="${id}">`)
     .replace('%%PAGE%%', `  <div class="page" id="page-${id}">${content}`);
 
+  checkSchema(id, page);
   fs.writeFileSync(path.join(OUT, id === 'home' ? 'index.html' : `${id}.html`), page);
   urls.push(url);
+  pageInfo.push({ id, url, title, description });
+}
+
+// ---- Schema check: every JSON-LD block must be valid JSON with @context and @type ----
+function checkSchema(file, html) {
+  for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    let data;
+    try { data = JSON.parse(m[1]); } catch (e) { throw new Error(`Invalid JSON-LD in ${file}: ${e.message}`); }
+    if (data['@context'] !== 'https://schema.org' || !data['@type']) throw new Error(`JSON-LD in ${file} needs "@context": "https://schema.org" and an "@type"`);
+  }
 }
 
 // ---- sitemap.xml and robots.txt ----
@@ -123,5 +135,31 @@ fs.writeFileSync(path.join(OUT, 'sitemap.xml'),
   urls.map((u) => `  <url><loc>${u}</loc><lastmod>${today}</lastmod></url>`).join('\n') +
   '\n</urlset>\n');
 fs.writeFileSync(path.join(OUT, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${SITE_URL}/sitemap.xml\n`);
+
+// ---- llms.txt: a plain-language guide to the site for AI assistants (llmstxt.org) ----
+const MAIN_PAGES = ['home', 'about', 'services', 'digital-marketing-agency-udaipur', 'industries', 'portfolio', 'contact'];
+const link = (p) => `- [${p.title.replace(/ — Waptrix.*$/, '')}](${p.url}): ${p.description}`;
+fs.writeFileSync(path.join(OUT, 'llms.txt'), [
+  '# Waptrix',
+  '',
+  '> Waptrix is a digital marketing agency based in Udaipur, Rajasthan, India. It runs Meta (Facebook and Instagram) ads, WhatsApp Business API setup and automation, and social media marketing, plus SEO, AEO, GEO, performance marketing and website development, as one in-house team for businesses across India.',
+  '',
+  '- Location: Sector 14, Udaipur, Rajasthan, India (serves clients remotely across India)',
+  '- Hours: Monday to Saturday, 10 AM to 7 PM IST',
+  '- Phone / WhatsApp: +91 98206 44273',
+  '- Email: info@waptrix.co.in',
+  '- WhatsApp automation platform sign-up: https://automate.waptrix.co.in/signup',
+  '',
+  '## Main pages',
+  ...pageInfo.filter((p) => MAIN_PAGES.includes(p.id)).map(link),
+  '',
+  '## Services',
+  ...pageInfo.filter((p) => !MAIN_PAGES.includes(p.id)).map(link),
+  '',
+  '## Optional',
+  '- [Instagram](https://www.instagram.com/waptrix_io/): @waptrix_io',
+  '- [LinkedIn](https://www.linkedin.com/company/waptrix-io/home/): Waptrix company page',
+  '',
+].join('\n'));
 
 console.log(`Built ${sections.length} pages into public/`);
